@@ -180,7 +180,7 @@ class EventTree : public Element,
   /// @returns The table range of event tree elements of specific kind
   ///          with element original names as keys.
   /// @{
-  auto sequances() const { return table<Sequence>(); }
+  auto sequences() const { return table<Sequence>(); }
   auto functional_events() const { return table<FunctionalEvent>(); }
   auto branches() const { return table<NamedBranch>(); }
   /// @}

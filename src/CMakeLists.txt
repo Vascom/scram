@@ -28,6 +28,7 @@ set(SCRAM_CORE_SRC
   ccf_group.cc
   fault_tree.cc
   event_tree.cc
+  consequence.cc
   alignment.cc
   model.cc
   pdag.cc

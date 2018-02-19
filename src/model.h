@@ -27,6 +27,7 @@
 
 #include "alignment.h"
 #include "ccf_group.h"
+#include "consequence.h"
 #include "element.h"
 #include "event.h"
 #include "event_tree.h"
@@ -41,16 +42,18 @@
 namespace scram::mef {
 
 /// This class represents a risk analysis model.
-class Model : public Element,
-              public Composite<
-                  Container<Model, InitiatingEvent>,
-                  Container<Model, EventTree>, Container<Model, Sequence>,
-                  Container<Model, Rule>, Container<Model, Alignment>,
-                  Container<Model, Substitution>, Container<Model, FaultTree>,
-                  Container<Model, BasicEvent>, Container<Model, Gate>,
-                  Container<Model, HouseEvent>, Container<Model, Parameter>,
-                  Container<Model, CcfGroup>, Container<Model, ExternLibrary>,
-                  Container<Model, ExternFunction<void>>> {
+class Model
+    : public Element,
+      public Composite<
+          Container<Model, InitiatingEvent>, Container<Model, EventTree>,
+          Container<Model, Sequence>, Container<Model, Consequence>,
+          Container<Model, ConsequenceGroup>, Container<Model, Rule>,
+          Container<Model, Alignment>, Container<Model, Substitution>,
+          Container<Model, FaultTree>, Container<Model, BasicEvent>,
+          Container<Model, Gate>, Container<Model, HouseEvent>,
+          Container<Model, Parameter>, Container<Model, CcfGroup>,
+          Container<Model, ExternLibrary>,
+          Container<Model, ExternFunction<void>>> {
  public:
   /// Container type identifier string for error messages.
   static constexpr const char* kTypeString = "model";
@@ -100,6 +103,8 @@ class Model : public Element,
   auto initiating_events() const { return table<InitiatingEvent>(); }
   auto event_trees() const { return table<EventTree>(); }
   auto sequences() const { return table<Sequence>(); }
+  auto consequences() const { return table<Consequence>(); }
+  auto consequence_groups() const { return table<ConsequenceGroup>(); }
   auto rules() const { return table<Rule>(); }
   auto fault_trees() const { return table<FaultTree>(); }
   auto alignments() const { return table<Alignment>(); }
