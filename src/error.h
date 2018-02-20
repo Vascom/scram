@@ -154,7 +154,7 @@ struct UndefinedElement : public ValidityError {
 
 /// Unacceptable cycles in model structures.
 struct CycleError : public ValidityError {
-  using ValidityError::ValidityError;
+  CycleError() : ValidityError("Cycle Error") {}
 };
 
 /// Invalid domain for values or arguments.
